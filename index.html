@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spijlzoeker</title>
+    <meta
+      name="description"
+      content="Zoek direct op spijlcode in een lokale dataset van Spijl in Stijl, met foto en productinformatie."
+    />
+    <meta name="theme-color" content="#f5f1ea" />
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="search-panel">
+        <p class="eyebrow">Spijl in Stijl</p>
+        <h1>Zoek direct op spijlcode</h1>
+        <p class="intro">
+          Typ bijvoorbeeld <strong>S01</strong>, <strong>S-01</strong>,
+          <strong>MR01</strong> of <strong>MV-01-S</strong>.
+        </p>
+
+        <button id="installButton" class="install-button hidden" type="button">
+          Installeer app
+        </button>
+
+        <div class="search-wrap">
+          <label class="sr-only" for="searchInput">Zoek op spijlcode</label>
+          <input
+            id="searchInput"
+            type="search"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Zoek op code..."
+          />
+          <div id="suggestions" class="suggestions" aria-live="polite"></div>
+        </div>
+
+        <p id="statusMessage" class="status-message">Laden...</p>
+      </section>
+
+      <section id="resultCard" class="result-card hidden" aria-live="polite"></section>
+    </main>
+
+    <div id="imageModal" class="image-modal hidden" aria-hidden="true">
+      <div class="image-modal-backdrop" data-close-modal="true"></div>
+      <div class="image-modal-panel" role="dialog" aria-modal="true" aria-labelledby="imageModalTitle">
+        <div class="image-modal-header">
+          <div>
+            <p class="image-modal-label">Afbeelding</p>
+            <h2 id="imageModalTitle">Spijl bekijken</h2>
+          </div>
+          <button id="closeModalButton" class="icon-button" type="button" aria-label="Sluiten">
+            Sluiten
+          </button>
+        </div>
+        <div id="zoomStage" class="zoom-stage">
+          <img id="zoomedImage" class="zoomed-image" alt="" />
+        </div>
+        <div class="zoom-controls">
+          <button id="zoomOutButton" class="icon-button" type="button">-</button>
+          <button id="zoomResetButton" class="icon-button" type="button">100%</button>
+          <button id="zoomInButton" class="icon-button" type="button">+</button>
+        </div>
+      </div>
+    </div>
+
+    <template id="suggestionTemplate">
+      <button type="button" class="suggestion-item"></button>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
